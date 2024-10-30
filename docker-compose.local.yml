@@ -39,17 +39,6 @@ services:
     networks:
       - appnet
 
-  ngrok:
-    container_name: ${PROJECT}_ngrock
-    image: wernight/ngrok:latest
-    environment:
-      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
-      - NGROK_PROTOCOL=http
-      - NGROK_PORT=app:81
-    depends_on:
-      - app
-    networks:
-      - appnet
   # redis:
   #   build:
   #     context: .
