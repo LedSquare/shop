@@ -76,3 +76,5 @@ migrate-fresh:
 	docker-compose -f docker-compose.local.yml exec app php artisan migrate:fresh --seed
 tinker: 
 	docker-compose -f docker-compose.local.yml exec app php artisan tinker
+exec:
+	docker-compose -f docker-compose.local.yml exec app bash
