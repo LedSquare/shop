@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Models\Product;
+namespace App\Models\Catalog;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CookOption extends Model
+class Cut extends Model
 {
     use HasFactory;
 
-    protected $table = 'cook_options';
+    protected $table = 'cuts';
 
     protected $fillable = [
-        'title',
-        'discription',
+        'name',
     ];
 }

@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Models\Product;
+namespace App\Models\Catalog;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cut extends Model
+class Catalog extends Model
 {
     use HasFactory;
 
-    protected $table = 'cuts';
+    protected $table = 'catalogs';
 
     protected $fillable = [
-        'name',
+        'title',
+        ''
     ];
 }

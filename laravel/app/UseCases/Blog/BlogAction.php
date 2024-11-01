@@ -2,7 +2,7 @@
 
 namespace App\Features\Blog;
 
-Eclass BlogAction
+class BlogAction
 {
 
 }
