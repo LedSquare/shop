@@ -53,7 +53,7 @@ return [
         'class' => PHPageBuilder\Modules\Auth\Auth::class,
         'url' => '/admin/auth',
         'username' => 'admin',
-        'password' => 'changethispassword'
+        'password' => 'admin'
     ],
 
     /*
