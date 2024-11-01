@@ -3,6 +3,9 @@ services:
     build:
       context: .
       dockerfile: docker/app/Dockerfile.local
+      args:
+        - USER=${DOCKER_USER}
+        - UID=${DOCKER_USER_UID}
     volumes:
       - ./laravel:/var/www/html
     ports:
@@ -20,7 +23,7 @@ services:
     image: postgres:15-bookworm
     restart: unless-stopped
     environment:
-      POSTGRES_PASSWORD: dbpass11
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
     volumes:
       - ./data/db:/var/lib/postgresql/data:rw
