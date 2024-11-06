@@ -1936,16 +1936,16 @@
         },
         {
             "name": "ledsquare/laravel-pagebuilder",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LedSquare/Beef-Laravel-Pagebuilder.git",
-                "reference": "1212654fd3b0da7aaa1755b13e86499c022361d2"
+                "reference": "99afb61dff321ce028f5ca593eece562990df45d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LedSquare/Beef-Laravel-Pagebuilder/zipball/1212654fd3b0da7aaa1755b13e86499c022361d2",
-                "reference": "1212654fd3b0da7aaa1755b13e86499c022361d2",
+                "url": "https://api.github.com/repos/LedSquare/Beef-Laravel-Pagebuilder/zipball/99afb61dff321ce028f5ca593eece562990df45d",
+                "reference": "99afb61dff321ce028f5ca593eece562990df45d",
                 "shasum": ""
             },
             "require": {
@@ -1980,9 +1980,9 @@
             ],
             "homepage": "https://github.com/LedSquare/Beef-Laravel-Pagebuilder",
             "support": {
-                "source": "https://github.com/LedSquare/Beef-Laravel-Pagebuilder/tree/v1.0.0"
+                "source": "https://github.com/LedSquare/Beef-Laravel-Pagebuilder/tree/v1.0.1"
             },
-            "time": "2024-11-01T06:47:15+00:00"
+            "time": "2024-11-06T06:10:28+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -8217,12 +8217,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
