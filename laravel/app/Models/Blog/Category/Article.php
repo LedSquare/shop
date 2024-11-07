@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Blog\Recipe;
+namespace App\Models\Blog\Category;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RecipeVariant extends Model
+class Article extends Model
 {
     use HasFactory;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Features\Search\Blog;
+namespace App\UseCases\Search\Blog;
 
 class BlogSearch
 {

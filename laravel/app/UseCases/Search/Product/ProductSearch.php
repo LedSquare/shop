@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Features\Search\Product;
+namespace App\UseCases\Search\Product;
 
 class ProductSearch
 {

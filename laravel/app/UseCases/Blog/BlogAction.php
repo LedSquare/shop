@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Features\Blog;
+namespace App\UseCases\Blog;
 
 class BlogAction
 {

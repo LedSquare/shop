@@ -2,7 +2,15 @@
 
 namespace App\UseCases\FeedBack;
 
-class FeedBackAction
+
+final class FeedBackAction
 {
+    /**
+     *
+     * @return \App\Models\FeedBack\FeedBack
+     */
+    public function store()
+    {
+    }
 
 }

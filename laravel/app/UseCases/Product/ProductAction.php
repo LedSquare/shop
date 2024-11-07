@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Features\Product;
+namespace App\UseCases\Product;
 
 class ProductAction
 {

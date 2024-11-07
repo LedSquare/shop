@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Features\Recepi;
+namespace App\UseCases\Blog;
 
 class RecepiAction
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Blog;
+namespace App\Models\Blog\Category;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class News extends Model
 {
     use HasFactory;
 }
