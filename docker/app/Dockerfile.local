@@ -5,9 +5,8 @@ FROM unit:1.32.1-php8.2
 ARG USER
 ARG UID
 
-RUN useradd -u $UID $USER
-
-RUN usermod -a -G root $USER
+RUN useradd -u $UID $USER && \
+      usermod -a -G root $USER
 
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 WORKDIR /var/www/html/
