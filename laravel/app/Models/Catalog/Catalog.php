@@ -9,9 +9,17 @@ class Catalog extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $table = 'catalogs';
 
     protected $fillable = [
-        'title',
+        'title_ru',
+        'title_en',
+    ];
+
+    protected $casts = [
+        'title_ru' => 'string',
+        'title_en' => 'string',
     ];
 }
