@@ -2,32 +2,36 @@
 
 declare(strict_types=1);
 
-namespace App\MoonShine\Resources\Catalog;
+namespace App\MoonShine\Resources;
 
 use App\Models\Catalog\Catalog;
-use App\MoonShine\Resources\LocalizationResource;
+use App\Models\Localization\Localization;
+
 use App\MoonShine\Resources\Localization\LangResource;
 use Illuminate\Database\Eloquent\Model;
-
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\Field;
 use MoonShine\Fields\ID;
 use MoonShine\Fields\Relationships\BelongsTo;
-use MoonShine\Fields\Relationships\MorphMany;
 use MoonShine\Fields\Relationships\MorphTo;
 use MoonShine\Fields\Select;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 
 /**
- * @extends ModelResource<Catalog>
+ * @extends ModelResource<Localization>
  */
-class CatalogResource extends ModelResource
+class LocalizationResource extends ModelResource
 {
-    protected string $model = Catalog::class;
 
-    protected string $title = 'Каталог';
+    public function __construct(
+        private ?string $catalogField = null
+    ) {
+    }
+    protected string $model = Localization::class;
+
+    protected string $title = 'Localizations';
 
     /**
      * @return list<MoonShineComponent|Field>
@@ -36,17 +40,21 @@ class CatalogResource extends ModelResource
     {
         return [
             Block::make([
-                ID::make('id')->sortable(),
-                Text::make('Заголовок', 'title'),
-                MorphMany::make('Перевод', 'localization', resource: new LocalizationResource('some'))
-                    ->creatable()
-                    ->searchable(false),
+                ID::make()->sortable(),
+                Text::make('Поле', 'field')
+                    ->readonly()
+                    ->default('asd'),
+                Text::make('Перевод', 'translate'),
+                BelongsTo::make('Язык', 'lang', fn($lang) => $lang->title, resource: new LangResource()),
+                MorphTo::make('Переденные модели', 'localizationable')->types([
+                    Catalog::class => 'field',
+                ]),
             ]),
         ];
     }
 
     /**
-     * @param Catalog $item
+     * @param Localization $item
      *
      * @return array<string, string[]|string>
      * @see https://laravel.com/docs/validation#available-validation-rules

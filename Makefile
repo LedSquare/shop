@@ -3,78 +3,92 @@ ifneq (,$(wildcard ./.env))
     export
 endif
 
-all: help
+setup: 
+	cp .env.example .env; 
+	cp laravel/.env.example laravel/.env;
+	docker network create aspnet
 
-help:
-	@echo "help                  			# this help"
-	@echo "setup-docker          			# install/upgrade docker and docker-compose"
-	@echo "build                 			# build images"
-	@echo "start                 			# build and start only backend"
-	@echo "compose                 			# composer install"
-	@echo "migrate                 			# artisan migrate"
-	@echo "stop                  			# stop and delete containers"
-	@echo "clear             			# stop all containers and clear all unusable data"
-	@echo "================================================================================================"
+# start deploying
+start-dep: composer npm composer-install dockerInstall build up 
 
-setup-docker:
-	apt update && apt install docker.io -y
-	curl -fsSL https://get.docker.com | sh
-	curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-	chmod +x /usr/local/bin/docker-compose
-	docker -v && docker-compose -v
+git-config:
+	@echo "Настройка Git..."
+	@read -p "Введите ваше имя: " name; \
+	git config user.name "$$name"; \
+	read -p "Введите вашу электронную почту: " email; \
+	git config user.email "$$email"; \
+	echo "Настройка завершена."; \
+	git config user.name; \
+	git config user.email
 
-setup:
-	[ -f .env ] || cp -f .env.example .env
-	[ -f laravel/.env ] || cp laravel/.env.example laravel/.env
-	sudo chmod -R 777 laravel/storage
+# deploying
+composer:
+	bash deploying/composer.sh
+npm:
+	apt install nodejs; node -v; apt install npm
+composer-dep:
+	composer install 
+dockerInstall:
+	bash deploying/docker-install.sh
 
 
-setup-network:
-	docker network inspect appnet || docker network create appnet
+# Чистая инициализация
+init: docker-down-clear docker-build up
 
-build:
-	docker-compose -f docker-compose.local.yml build
+# Полностью обновить образы
+update: docker-down-clear docker-pull docker-build-pull up
 
-start: setup setup-network
-	docker-compose -f docker-compose.local.yml up -d
-	docker-compose -f docker-compose.local.yml exec app composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
-	docker run --rm -v "${PWD}/laravel:/app" node:18-bookworm-slim bash -c "cd /app && npm install ; npm run build"
-	grep -q "^APP_KEY=....*$\" laravel/.env || docker-compose -f docker-compose.local.yml exec app php artisan key:generate
-	[ -L laravel/public/storage ] || docker-compose -f docker-compose.local.yml exec app php artisan storage:link
+# Delete images by tag
+delete-tag: docker-clear-images-tag
+# Delete iages by names
+delete-name: docker-clear-images-name
+
+
+# shortcuts
+start: docker-up composer-install key-storage npm-install
+stop: docker-down
+restart: stop start
+rebuild: stop build start 
+build: docker-build
+
+docker-build:
+	docker compose build
+docker-up:
+	docker compose up -d
+docker-down:
+	docker compose down --remove-orphans
+docker-down-clear:
+	docker compose down -v --remove-orphans
+docker-pull:
+	docker compose pull
+docker-clear-images-tag:
+	docker rmi $$(docker images --format '{{.Repository}}:{{.Tag}}' | grep ':${TAG}') -f
+docker-clear-images-name:
+	docker rmi $$(docker images --format '{{.Repository}}:{{.Tag}}' | grep '${PROJECT}') -f
+composer-update:
+	docker compose exec app composer update
+composer-install:
+	docker compose exec app composer install
+key-storage:
+	docker compose exec app php artisan key:generate
+	docker compose exec app chmod -R 777 storage
+chmod:
+	docker exec -it php chmod -R 777 
+exec:
+	docker compose exec -u user app bash
 
 migrate:
-	docker-compose -f docker-compose.local.yml exec app php artisan migrate
+	${DOCKER_EXEC_APP} php artisan migrate:fresh $(s)
 
-keygen:
-	grep -q "^APP_KEY=....*$\" laravel/.env || docker-compose -f docker-compose.local.yml exec app php artisan key:generate
+run-tests:	
+	read -p "Тип теста? - " type; \
+	if [ -z "$$type" ]; then\
+		type="Feature"; \
+	fi; \
+	docker compose exec app php artisan test --testsuite=$$type
 
-storlink:
-	[ -L laravel/public/storage ] || docker-compose -f docker-compose.local.yml exec app php artisan storage:link
-
-# after start
-
-compose:
-	docker-compose -f docker-compose.local.yml exec app composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
-
-build-front:
-	docker run --rm -v "${PWD}/laravel:/app" node:18-bookworm-slim bash -c "cd /app && npm install ; npm run build"
-
-# stop and clear
-
-stop:
-	docker-compose -f docker-compose.local.yml down
-
-prune:
-	docker container prune -f
-	docker image prune -a -f
-	docker volume prune -f
-
-clear: stop prune
-	sudo rm -rf data ${PROJECT}-frontend/dist ${PROJECT}-frontend/.output
+tinker:
+	docker compose exec app php artisan tinker app/Console/tinker.php
 
 migrate-fresh:
-	docker-compose -f docker-compose.local.yml exec app php artisan migrate:fresh --seed
-tinker: 
-	docker-compose -f docker-compose.local.yml exec app php artisan tinker
-exec:
-	docker-compose -f docker-compose.local.yml exec -u ${DOCKER_USER} app bash
+	docker compose exec app php artisan migrate:fresh --seed

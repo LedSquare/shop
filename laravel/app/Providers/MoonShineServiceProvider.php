@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\MoonShine\Resources\Catalog\CatalogResource;
-use Closure;
+use App\MoonShine\Resources\LocalizationResource;
+use App\MoonShine\Resources\Localization\LangResource;
 use MoonShine\Contracts\Resources\ResourceContract;
 use MoonShine\Menu\MenuElement;
 use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
-use MoonShine\MoonShine;
 use MoonShine\Pages\Page;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\Resources\MoonShineUserResource;
@@ -52,8 +52,11 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             ]),
 
             MenuGroup::make(label: 'Каталог и Продукция', items: [
-                MenuItem::make(label: 'Каталога', filler: new CatalogResource()),
-            ])
+                MenuItem::make(label: 'Каталог', filler: new CatalogResource()),
+                MenuItem::make(label: 'Перевод', filler: new LocalizationResource()),
+            ]),
+
+            MenuItem::make(label: 'Языки', filler: new LangResource()),
         ];
     }
 
