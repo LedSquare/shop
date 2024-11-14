@@ -23,7 +23,9 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
      */
     protected function resources(): array
     {
-        return [];
+        return [
+            new LocalizationResource(),
+        ];
     }
 
     /**
@@ -53,7 +55,6 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 
             MenuGroup::make(label: 'Каталог и Продукция', items: [
                 MenuItem::make(label: 'Каталог', filler: new CatalogResource()),
-                MenuItem::make(label: 'Перевод', filler: new LocalizationResource()),
             ]),
 
             MenuItem::make(label: 'Языки', filler: new LangResource()),

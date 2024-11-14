@@ -34,13 +34,14 @@ class CatalogResource extends ModelResource
      */
     public function fields(): array
     {
+
         return [
             Block::make([
                 ID::make('id')->sortable(),
                 Text::make('Заголовок', 'title'),
-                MorphMany::make('Перевод', 'localization', resource: new LocalizationResource('some'))
+                MorphMany::make('Перевод', 'localization', resource: new LocalizationResource(Catalog::getTransaledField()))
                     ->creatable()
-                    ->searchable(false),
+                    ->searchable(false)
             ]),
         ];
     }

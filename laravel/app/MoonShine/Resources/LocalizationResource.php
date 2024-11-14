@@ -13,6 +13,7 @@ use MoonShine\Components\MoonShineComponent;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\Field;
 use MoonShine\Fields\ID;
+use MoonShine\Fields\Preview;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Relationships\MorphTo;
 use MoonShine\Fields\Select;
@@ -24,9 +25,8 @@ use MoonShine\Resources\ModelResource;
  */
 class LocalizationResource extends ModelResource
 {
-
     public function __construct(
-        private ?string $catalogField = null
+        private ?array $transaledFields = null
     ) {
     }
     protected string $model = Localization::class;
@@ -39,15 +39,14 @@ class LocalizationResource extends ModelResource
     public function fields(): array
     {
         return [
+
             Block::make([
                 ID::make()->sortable(),
-                Text::make('Поле', 'field')
-                    ->readonly()
-                    ->default('asd'),
                 Text::make('Перевод', 'translate'),
+                Select::make('Поле', 'field')->options($this->transaledFields ?? []),
                 BelongsTo::make('Язык', 'lang', fn($lang) => $lang->title, resource: new LangResource()),
-                MorphTo::make('Переденные модели', 'localizationable')->types([
-                    Catalog::class => 'field',
+                MorphTo::make('Переведенные модели', 'localizationable')->types([
+                    Catalog::class => 'title',
                 ]),
             ]),
         ];
