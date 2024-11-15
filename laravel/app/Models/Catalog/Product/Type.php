@@ -14,9 +14,8 @@ class Type extends Model
 
     protected $fillable = [
         'name',
-        'fullaname'
+        'fullaname',
     ];
-
 
     protected $casts = [
         'name' => 'string',

@@ -15,5 +15,4 @@ class FeedBack extends Model
         'contact_info',
         'type',
     ];
-
 }

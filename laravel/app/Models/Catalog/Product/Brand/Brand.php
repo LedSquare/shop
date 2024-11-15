@@ -13,10 +13,10 @@ class Brand extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        ''
+        '',
     ];
 
     protected $casts = [
-        ''
+        '',
     ];
 }

@@ -17,8 +17,9 @@ class SetLocaleMiddleware
     {
         $langSegment = (string) $request->segment(index: 1);
 
-        if (!in_array(needle: $langSegment, haystack: ['ru', 'en'])) {
-            $newUrl = '/' . config('app.locale') . $request->getPathInfo();
+        if (! in_array(needle: $langSegment, haystack: ['ru', 'en'])) {
+            $newUrl = '/'.config('app.locale').$request->getPathInfo();
+
             return redirect($newUrl);
         }
 

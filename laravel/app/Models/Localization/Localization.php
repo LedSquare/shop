@@ -19,7 +19,7 @@ class Localization extends Model
         'localizationable_type',
         'lang_id',
         'field',
-        'translate'
+        'translate',
     ];
 
     protected $casts = [

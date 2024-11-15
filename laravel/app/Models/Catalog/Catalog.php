@@ -10,6 +10,7 @@ class Catalog extends Model
 {
     /** @use HasFactory<\Database\Factories\Catalog\CatalogFactory> */
     use HasFactory;
+
     use HasTranslate;
 
     public $timestamps = false;
@@ -27,7 +28,7 @@ class Catalog extends Model
     public static function getTransaledField(): array
     {
         return [
-            'title' => 'Заголовок'
+            'title' => 'Заголовок',
         ];
     }
 }

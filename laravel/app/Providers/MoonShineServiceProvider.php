@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\MoonShine\Resources\Catalog\CatalogResource;
-use App\MoonShine\Resources\LocalizationResource;
 use App\MoonShine\Resources\Localization\LangResource;
+use App\MoonShine\Resources\LocalizationResource;
 use MoonShine\Contracts\Resources\ResourceContract;
 use MoonShine\Menu\MenuElement;
 use MoonShine\Menu\MenuGroup;
@@ -24,7 +24,7 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     protected function resources(): array
     {
         return [
-            new LocalizationResource(),
+            new LocalizationResource,
         ];
     }
 
@@ -42,22 +42,22 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     protected function menu(): array
     {
         return [
-            MenuGroup::make(label: static fn(): array|string|null => __(key: 'moonshine::ui.resource.system'), items: [
+            MenuGroup::make(label: static fn (): array|string|null => __(key: 'moonshine::ui.resource.system'), items: [
                 MenuItem::make(
-                    label: static fn(): array|string|null => __(key: 'moonshine::ui.resource.admins_title'),
-                    filler: new MoonShineUserResource()
+                    label: static fn (): array|string|null => __(key: 'moonshine::ui.resource.admins_title'),
+                    filler: new MoonShineUserResource
                 ),
                 MenuItem::make(
-                    label: static fn(): array|string|null => __(key: 'moonshine::ui.resource.role_title'),
-                    filler: new MoonShineUserRoleResource()
+                    label: static fn (): array|string|null => __(key: 'moonshine::ui.resource.role_title'),
+                    filler: new MoonShineUserRoleResource
                 ),
             ]),
 
             MenuGroup::make(label: 'Каталог и Продукция', items: [
-                MenuItem::make(label: 'Каталог', filler: new CatalogResource()),
+                MenuItem::make(label: 'Каталог', filler: new CatalogResource),
             ]),
 
-            MenuItem::make(label: 'Языки', filler: new LangResource()),
+            MenuItem::make(label: 'Языки', filler: new LangResource),
         ];
     }
 

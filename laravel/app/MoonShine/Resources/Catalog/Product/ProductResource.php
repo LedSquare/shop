@@ -5,15 +5,11 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources\Catalog;
 
 use App\Models\Catalog\Product\Product;
-use App\MoonShine\Resources\LocalizationResource;
-
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\Field;
 use MoonShine\Fields\ID;
-use MoonShine\Fields\Relationships\MorphMany;
-use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 
 /**
@@ -39,9 +35,9 @@ class ProductResource extends ModelResource
     }
 
     /**
-     * @param Product $item
-     *
+     * @param  Product  $item
      * @return array<string, string[]|string>
+     *
      * @see https://laravel.com/docs/validation#available-validation-rules
      */
     public function rules(Model $item): array

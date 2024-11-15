@@ -7,7 +7,6 @@ namespace App\MoonShine\Resources\Catalog;
 use App\Models\Catalog\Catalog;
 use App\MoonShine\Resources\LocalizationResource;
 use Illuminate\Database\Eloquent\Model;
-
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\Field;
@@ -37,15 +36,15 @@ class CatalogResource extends ModelResource
                 Text::make('Заголовок', 'title'),
                 MorphMany::make('Перевод', 'localization', resource: new LocalizationResource(Catalog::getTransaledField()))
                     ->creatable()
-                    ->searchable(false)
+                    ->searchable(false),
             ]),
         ];
     }
 
     /**
-     * @param Catalog $item
-     *
+     * @param  Catalog  $item
      * @return array<string, string[]|string>
+     *
      * @see https://laravel.com/docs/validation#available-validation-rules
      */
     public function rules(Model $item): array

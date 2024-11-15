@@ -3,7 +3,6 @@
 namespace App\Traits\Localization;
 
 use App\Models\Localization\Lang;
-
 use App\Models\Localization\Localization;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -13,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 trait HasTranslate
 {
-    abstract static function getTransaledField(): array; //Переводимые поля
+    abstract public static function getTransaledField(): array; //Переводимые поля
 
     public function translate($field, $lang = null)    //Переведенные поля
     {
@@ -33,9 +32,10 @@ trait HasTranslate
             )
             ->where('field', $field)->first();
 
-        if (!$translate) {
+        if (! $translate) {
             return $this->$field;
         }
+
         return $translate;
     }
 

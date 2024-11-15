@@ -6,14 +6,12 @@ namespace App\MoonShine\Resources;
 
 use App\Models\Catalog\Catalog;
 use App\Models\Localization\Localization;
-
 use App\MoonShine\Resources\Localization\LangResource;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\Field;
 use MoonShine\Fields\ID;
-use MoonShine\Fields\Preview;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Relationships\MorphTo;
 use MoonShine\Fields\Select;
@@ -27,8 +25,8 @@ class LocalizationResource extends ModelResource
 {
     public function __construct(
         private ?array $transaledFields = null
-    ) {
-    }
+    ) {}
+
     protected string $model = Localization::class;
 
     protected string $title = 'Localizations';
@@ -44,7 +42,7 @@ class LocalizationResource extends ModelResource
                 ID::make()->sortable(),
                 Text::make('Перевод', 'translate'),
                 Select::make('Поле', 'field')->options($this->transaledFields ?? []),
-                BelongsTo::make('Язык', 'lang', fn($lang) => $lang->title, resource: new LangResource()),
+                BelongsTo::make('Язык', 'lang', fn ($lang) => $lang->title, resource: new LangResource),
                 MorphTo::make('Переведенные модели', 'localizationable')->types([
                     Catalog::class => 'title',
                 ]),
@@ -53,9 +51,9 @@ class LocalizationResource extends ModelResource
     }
 
     /**
-     * @param Localization $item
-     *
+     * @param  Localization  $item
      * @return array<string, string[]|string>
+     *
      * @see https://laravel.com/docs/validation#available-validation-rules
      */
     public function rules(Model $item): array

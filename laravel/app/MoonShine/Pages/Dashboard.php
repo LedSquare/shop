@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages;
 
-use MoonShine\Pages\Page;
 use MoonShine\Components\MoonShineComponent;
+use MoonShine\Pages\Page;
 
 class Dashboard extends Page
 {
@@ -15,7 +15,7 @@ class Dashboard extends Page
     public function breadcrumbs(): array
     {
         return [
-            '#' => $this->title()
+            '#' => $this->title(),
         ];
     }
 
@@ -28,7 +28,7 @@ class Dashboard extends Page
      * @return list<MoonShineComponent>
      */
     public function components(): array
-	{
-		return [];
-	}
+    {
+        return [];
+    }
 }

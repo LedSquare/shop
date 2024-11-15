@@ -17,6 +17,4 @@ class TypeProcuct extends Model
         'type_id',
         'product_id',
     ];
-
-
 }

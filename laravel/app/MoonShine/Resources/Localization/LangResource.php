@@ -6,7 +6,6 @@ namespace App\MoonShine\Resources\Localization;
 
 use App\Models\Localization\Lang;
 use Illuminate\Database\Eloquent\Model;
-
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\Field;
@@ -37,9 +36,9 @@ class LangResource extends ModelResource
     }
 
     /**
-     * @param Lang $item
-     *
+     * @param  Lang  $item
      * @return array<string, string[]|string>
+     *
      * @see https://laravel.com/docs/validation#available-validation-rules
      */
     public function rules(Model $item): array

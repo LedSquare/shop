@@ -17,7 +17,7 @@ class BasePathRedirectMiddleware
     {
         $url = $request->getBasePath();
 
-        if (!$url) {
+        if (! $url) {
             return redirect('/ru/home');
         }
 

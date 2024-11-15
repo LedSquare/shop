@@ -37,7 +37,7 @@ class Product extends Model
         'brand_id' => 'integer',
         'name' => 'string',
         'full_name' => 'string',
-        'description' => 'string',//text
+        'description' => 'string', //text
         'publish' => 'boolean',
         'price' => 'integer',
     ];
