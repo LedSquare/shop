@@ -15,7 +15,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+    /** @use HasFactory<\Database\Factories\Catalog\Product\ProductFactory> */
     use HasFactory;
+
+    public $timestamps = false;
 
     protected $table = 'products';
 
@@ -25,7 +28,7 @@ class Product extends Model
         'name',
         'full_name',
         'description',
-        'visible',
+        'publish',
         'price',
     ];
 
@@ -33,9 +36,9 @@ class Product extends Model
         'catalog_id' => 'integer',
         'brand_id' => 'integer',
         'name' => 'string',
-        'full_name' => 'text',
-        'description' => 'string',
-        'visible' => 'boolean',
+        'full_name' => 'string',
+        'description' => 'string',//text
+        'publish' => 'boolean',
         'price' => 'integer',
     ];
 }

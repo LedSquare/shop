@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources\Catalog;
 
-use App\Models\Catalog\Catalog;
+use App\Models\Catalog\Product\Product;
 use App\MoonShine\Resources\LocalizationResource;
-use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Model;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\Field;
@@ -17,13 +17,13 @@ use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 
 /**
- * @extends ModelResource<Catalog>
+ * @extends ModelResource<Product>
  */
-class CatalogResource extends ModelResource
+class ProductResource extends ModelResource
 {
-    protected string $model = Catalog::class;
+    protected string $model = Product::class;
 
-    protected string $title = 'Каталог';
+    protected string $title = 'Продукт';
 
     /**
      * @return list<MoonShineComponent|Field>
@@ -34,16 +34,12 @@ class CatalogResource extends ModelResource
         return [
             Block::make([
                 ID::make('id')->sortable(),
-                Text::make('Заголовок', 'title'),
-                MorphMany::make('Перевод', 'localization', resource: new LocalizationResource(Catalog::getTransaledField()))
-                    ->creatable()
-                    ->searchable(false)
             ]),
         ];
     }
 
     /**
-     * @param Catalog $item
+     * @param Product $item
      *
      * @return array<string, string[]|string>
      * @see https://laravel.com/docs/validation#available-validation-rules
