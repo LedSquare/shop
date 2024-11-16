@@ -14,7 +14,7 @@ trait HasTranslate
 {
     abstract public static function getTransaledField(): array; //Переводимые поля
 
-    public function translate($field, $lang = null)    //Переведенные поля
+    public function translate($field, $lang = null)
     {
         if ($lang === null) {
             $lang = app()->getLocale();
@@ -32,7 +32,7 @@ trait HasTranslate
             )
             ->where('field', $field)->first();
 
-        if (! $translate) {
+        if (!$translate) {
             return $this->$field;
         }
 
