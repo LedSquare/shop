@@ -47,3 +47,6 @@ make stop
 make compose
 make migrate
 ```
+
+
+TODO: Валидация, Поля: Список полей и обязательных полей.

@@ -6,7 +6,7 @@ endif
 setup: 
 	cp .env.example .env; 
 	cp laravel/.env.example laravel/.env;
-	docker network create aspnet
+	docker network create appnet
 
 # start deploying
 start-dep: composer npm composer-install dockerInstall build up 
