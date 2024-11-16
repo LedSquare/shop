@@ -2,6 +2,7 @@
 
 use App\Models\Catalog\Catalog;
 use App\Models\Catalog\Product\Brand\Brand;
+use App\Models\Catalog\Product\Type;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(Catalog::class, 'catalog_id');
             $table->foreignIdFor(Brand::class, 'brand_id')->nullable(true);
+            $table->foreignIdFor(Type::class, 'type_id')->nullable(true);
             $table->string('name');
             $table->string('full_name');
             $table->text('description');

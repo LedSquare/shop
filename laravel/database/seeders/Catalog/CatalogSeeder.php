@@ -3,7 +3,6 @@
 namespace Database\Seeders\Catalog;
 
 use Database\Factories\Catalog\CatalogFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CatalogSeeder extends Seeder
@@ -13,7 +12,7 @@ class CatalogSeeder extends Seeder
      */
     public function run(): void
     {
-        $catalogTitles = [
+        $catalogNames = [
             'Лопатка',
             'Толстый край',
             'Тонкий край',
@@ -23,10 +22,11 @@ class CatalogSeeder extends Seeder
             'Голяшка',
             'Покромка',
             'Пашина',
+            'Субпродукты',
         ];
 
-        foreach ($catalogTitles as $title) {
-            CatalogFactory::new()->create(['title' => $title]);
+        foreach ($catalogNames as $name) {
+            CatalogFactory::new()->create(['name' => $name]);
         }
     }
 }

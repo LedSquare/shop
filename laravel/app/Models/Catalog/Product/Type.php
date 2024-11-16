@@ -4,31 +4,25 @@ namespace App\Models\Catalog\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Type extends Model
 {
+    /** @use HasFactory<\Database\Factories\Catalog\Product\TypeFactory> */
     use HasFactory;
 
     public $timestamps = false;
 
     protected $fillable = [
         'name',
-        'fullaname',
     ];
 
     protected $casts = [
         'name' => 'string',
-        'fullname' => 'string',
     ];
 
-    public function products(): BelongsToMany
+    public function products(): HasMany
     {
-        return $this->belongsToMany(
-            related: Product::class,
-            table: TypeProcuct::class,
-            foreignPivotKey: 'type_id',
-            relatedPivotKey: 'product_id'
-        );
+        return $this->hasMany(Product::class, 'type_id');
     }
 }

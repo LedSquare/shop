@@ -24,6 +24,7 @@ class CatalogResource extends ModelResource
 
     protected string $title = 'Каталог';
 
+
     /**
      * @return list<MoonShineComponent|Field>
      */
@@ -33,7 +34,7 @@ class CatalogResource extends ModelResource
         return [
             Block::make([
                 ID::make('id')->sortable(),
-                Text::make('Заголовок', 'title'),
+                Text::make('Заголовок', 'name'),
                 MorphMany::make('Перевод', 'localization', resource: new LocalizationResource(Catalog::getTransaledField()))
                     ->creatable()
                     ->searchable(false),
@@ -50,5 +51,13 @@ class CatalogResource extends ModelResource
     public function rules(Model $item): array
     {
         return [];
+    }
+
+    public function getActiveActions(): array
+    {
+        return [
+            'update',
+            'view',
+        ];
     }
 }

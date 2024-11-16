@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Factories\Localization\LangFactory;
 use Database\Seeders\Catalog\CatalogSeeder;
+use Database\Seeders\Catalog\Product\ProductSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use MoonShine\Models\MoonshineUser;
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CatalogSeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }
