@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware\Lang;
 
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+
+use function in_array;
 
 class SetLocaleMiddleware
 {
@@ -17,8 +21,8 @@ class SetLocaleMiddleware
     {
         $langSegment = (string) $request->segment(index: 1);
 
-        if (! in_array(needle: $langSegment, haystack: ['ru', 'en'])) {
-            $newUrl = '/'.config('app.locale').$request->getPathInfo();
+        if (!in_array(needle: $langSegment, haystack: ['ru', 'en'])) {
+            $newUrl = '/' . config('app.locale') . $request->getPathInfo();
 
             return redirect($newUrl);
         }
