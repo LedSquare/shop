@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->foreignIdFor(Lang::class, 'lang_id');
             $table->string('field');
             $table->text('translate');
-            $table->unique('field', 'lang_id');
+            $table->unique(['field', 'lang_id', 'localizationable_type', 'localizationable_id']);
         });
     }
 
