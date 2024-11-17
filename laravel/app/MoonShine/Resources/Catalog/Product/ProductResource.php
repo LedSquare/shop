@@ -56,7 +56,8 @@ class ProductResource extends ModelResource
 
                         Text::make('Наименование', 'name'),
                         Text::make('Полное наименование', 'full_name'),
-                        Switcher::make('Опубликован', 'publish'),
+                        Switcher::make('Опубликован', 'publish')
+                            ->updateOnPreview(),
                         Text::make('Цена', 'price'),
                     ]),
                 ]),

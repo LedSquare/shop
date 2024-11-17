@@ -47,8 +47,7 @@ class LocalizationResource extends ModelResource
                 MorphTo::make('Переведенный объект', 'localizationable')->types([
                     Catalog::class => ['name', 'Каталог'],
                 ])
-                    ->hideOnIndex()
-                    ->hideOnForm(),
+                    ->hideOnIndex(),
             ]),
         ];
     }
