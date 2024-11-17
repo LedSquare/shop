@@ -2,11 +2,25 @@
 
 namespace App\Models\Localization;
 
+use App\Models\Localization\Lang;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+
+/**
+ * @property int $localizationable_id
+ * @property string $localizationable_type
+ * @property int $lang_id
+ * @property string $field
+ * @property string $translate
+ *
+ * @property Lang $lang
+ * @property Lang $lang
+ * @method BelongsTo lang()
+ * @method MorphTo localizationable()
+ */
 class Localization extends Model
 {
     /** @use HasFactory<\Database\Factories\Localization\LocalizationFactory> */

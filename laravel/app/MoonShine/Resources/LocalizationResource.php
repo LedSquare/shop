@@ -25,11 +25,12 @@ class LocalizationResource extends ModelResource
 {
     public function __construct(
         private ?array $transaledFields = null
-    ) {}
+    ) {
+    }
 
     protected string $model = Localization::class;
 
-    protected string $title = 'Localizations';
+    protected string $title = 'Перевод';
 
     /**
      * @return list<MoonShineComponent|Field>
@@ -42,10 +43,12 @@ class LocalizationResource extends ModelResource
                 ID::make()->sortable(),
                 Text::make('Перевод', 'translate'),
                 Select::make('Поле', 'field')->options($this->transaledFields ?? []),
-                BelongsTo::make('Язык', 'lang', fn ($lang) => $lang->title, resource: new LangResource),
-                MorphTo::make('Переведенные модели', 'localizationable')->types([
-                    Catalog::class => 'title',
-                ]),
+                BelongsTo::make('Язык', 'lang', fn($lang) => $lang->title, resource: new LangResource),
+                MorphTo::make('Переведенный объект', 'localizationable')->types([
+                    Catalog::class => ['name', 'Каталог'],
+                ])
+                    ->hideOnIndex()
+                    ->hideOnForm(),
             ]),
         ];
     }
