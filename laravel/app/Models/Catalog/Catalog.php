@@ -33,7 +33,7 @@ class Catalog extends Model
     public static function getTransaledField(): array
     {
         return [
-            'title' => 'Заголовок',
+            'name' => 'Название',
         ];
     }
 
