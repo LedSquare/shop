@@ -9,10 +9,15 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @template T of Model
+ * @template TKey of string Model field
+ * @template TVal of string Field display name
  */
 trait HasTranslate
 {
-    abstract public static function getTransaledField(): array; //Переводимые поля
+    /**
+     * @return array<TKey, TVal>
+     */
+    abstract static function getTransaledField(): array;
 
     public function translate($field, $lang = null)
     {
