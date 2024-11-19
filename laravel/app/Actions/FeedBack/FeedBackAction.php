@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\FeedBack;
+namespace App\Actions\FeedBack;
 
 
 final class FeedBackAction
@@ -9,7 +9,7 @@ final class FeedBackAction
      *
      * @return \App\Models\FeedBack\FeedBack
      */
-    public function store()
+    public function __invoke(): void
     {
     }
 

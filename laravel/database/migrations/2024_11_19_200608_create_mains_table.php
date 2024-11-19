@@ -10,11 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('mains', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable(false);
-            $table->string('url')->nullable(false);
-            $table->integer('order')->default(0);
+            $table->string('title');
+            $table->string('text');
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('mains');
     }
 };
