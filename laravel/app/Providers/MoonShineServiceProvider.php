@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\Blog\Category\ArticleResource;
 use App\MoonShine\Resources\Catalog\CatalogResource;
 use App\MoonShine\Resources\Catalog\Product\ProductResource;
 use App\MoonShine\Resources\Catalog\Product\TypeResource;
@@ -60,6 +61,11 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 MenuItem::make(label: 'Тип стейка', filler: new TypeResource),
                 MenuItem::make(label: 'Продукция', filler: new ProductResource),
             ]),
+
+            MenuGroup::make(label: 'Блог', items: [
+                MenuItem::make(label: 'Статья', filler: new ArticleResource),
+            ]),
+
 
             MenuItem::make(label: 'Языки', filler: new LangResource),
         ];

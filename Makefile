@@ -75,7 +75,7 @@ key-storage:
 chmod:
 	docker exec -it php chmod -R 777 
 exec:
-	docker compose exec -u user app bash
+	docker compose exec app bash
 
 migrate:
 	${DOCKER_EXEC_APP} php artisan migrate:fresh $(s)
