@@ -4,10 +4,12 @@ namespace App\Models\Catalog\Product;
 
 use App\Models\Catalog\Catalog;
 use App\Models\Catalog\Product\Brand\Brand;
+use App\Models\Catalog\Product\Option;
 use App\Models\Catalog\Product\Type;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $catalog_id
@@ -17,6 +19,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $description
  * @property bool $publish
  * @property int $price
+ * @property Catalog $catalog
+ * @property Brand $brand
+ * @property Type $type
+ * @property \Illuminate\Database\Eloquent\Collection<Option> $options
  */
 class Product extends Model
 {
@@ -32,6 +38,7 @@ class Product extends Model
         'brand_id',
         'name',
         'full_name',
+        'image',
         'description',
         'publish',
         'price',
@@ -42,6 +49,7 @@ class Product extends Model
         'brand_id' => 'integer',
         'name' => 'string',
         'full_name' => 'string',
+        'image' => 'string',
         'description' => 'string', //text
         'publish' => 'boolean',
         'price' => 'integer',
@@ -60,6 +68,11 @@ class Product extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(Type::class, 'type_id');
+    }
+
+    public function options(): HasMany
+    {
+        return $this->hasMany(Option::class, 'product_id');
     }
 
 

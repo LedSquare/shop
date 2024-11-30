@@ -6,6 +6,7 @@ namespace App\MoonShine\Resources\Catalog\Product;
 
 use App\Models\Catalog\Product\Product;
 use App\MoonShine\Resources\Catalog\CatalogResource;
+use App\MoonShine\Resources\Catalog\Product\OptionResource;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Decorations\Block;
@@ -13,7 +14,9 @@ use MoonShine\Decorations\Tab;
 use MoonShine\Decorations\Tabs;
 use MoonShine\Fields\Field;
 use MoonShine\Fields\ID;
+use MoonShine\Fields\Image;
 use MoonShine\Fields\Relationships\BelongsTo;
+use MoonShine\Fields\Relationships\HasMany;
 use MoonShine\Fields\Switcher;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\TinyMce;
@@ -56,6 +59,8 @@ class ProductResource extends ModelResource
 
                         Text::make('Наименование', 'name'),
                         Text::make('Полное наименование', 'full_name'),
+                        Image::make('Изображение', 'image')
+                            ->dir('products'),
                         Switcher::make('Опубликован', 'publish')
                             ->updateOnPreview(),
                         Text::make('Цена', 'price'),
@@ -66,8 +71,13 @@ class ProductResource extends ModelResource
                         ->plugins('resize')
                         ->required()
                         ->hideOnIndex(),
-                ])
-            ])
+                ]),
+
+            ]),
+
+            HasMany::make('Опции', 'options', resource: new OptionResource)
+                ->creatable()
+                ->searchable(false),
         ];
     }
 

@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\MoonShine\Resources\Blog\Category\ArticleResource;
 use App\MoonShine\Resources\Catalog\CatalogResource;
+use App\MoonShine\Resources\Catalog\Product\OptionResource;
 use App\MoonShine\Resources\Catalog\Product\ProductResource;
 use App\MoonShine\Resources\Catalog\Product\TypeResource;
 use App\MoonShine\Resources\LocalizationResource;
@@ -28,6 +29,7 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     {
         return [
             new LocalizationResource,
+            new OptionResource,
         ];
     }
 
@@ -63,7 +65,6 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             ]),
 
             MenuGroup::make(label: 'Блог', items: [
-                MenuItem::make(label: 'Статья', filler: new ArticleResource),
             ]),
 
 

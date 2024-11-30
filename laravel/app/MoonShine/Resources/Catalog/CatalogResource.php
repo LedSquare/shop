@@ -34,7 +34,11 @@ class CatalogResource extends ModelResource
             Block::make([
                 ID::make('id')->sortable(),
                 Text::make('Название', 'name'),
-                MorphMany::make('Переводы', 'localization', resource: new LocalizationResource(Catalog::getTransaledField()))
+                MorphMany::make(
+                    'Переводы',
+                    'localization',
+                    resource: new LocalizationResource(Catalog::getTransaledField())
+                )
                     ->creatable()
                     ->searchable(false),
             ]),

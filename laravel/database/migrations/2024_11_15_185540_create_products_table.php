@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->foreignIdFor(Type::class, 'type_id')->nullable(true);
             $table->string('name');
             $table->string('full_name');
+            $table->string('image');
             $table->text('description');
             $table->boolean('publish');
             $table->integer('price');
