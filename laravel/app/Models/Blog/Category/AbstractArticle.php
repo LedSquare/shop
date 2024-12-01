@@ -4,19 +4,9 @@ namespace App\Models\Blog\Category;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-/**
- * @property string $title
- * @property string $text
- * @property string $preview_image
- * @property bool $publish
- */
-class Article extends Model
+abstract class AbstractArticle extends Model
 {
-    /** @use HasFactory<\Database\Factories\Blog\ArticleFactory> */
-    use HasFactory;
-
     protected $fillable = [
         'title',
         'text',
@@ -30,10 +20,5 @@ class Article extends Model
         'preview_image' => 'string',
         'publish' => 'boolean',
     ];
-
-    public function tags(): BelongsToMany
-    {
-        return $this->belongsToMany();
-    }
 
 }

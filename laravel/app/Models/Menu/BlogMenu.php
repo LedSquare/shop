@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $url
  */
-class Menu extends Model
+class BlogMenu extends Model
 {
     /** @use HasFactory<\Database\Factories\Menu\MenuFactory> */
     use HasFactory;

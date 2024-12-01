@@ -1,11 +1,12 @@
 <?php
 
-namespace Database\Factories\Catalog\Production;
+namespace Database\Factories\Catalog\Product;
 
+use App\Models\Catalog\Product\Option;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Catalog\Production\Option>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<Option>
  */
 class OptionFactory extends Factory
 {

@@ -4,9 +4,8 @@ namespace App\Models\Pages;
 
 use App\Traits\Localization\HasTranslate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Main extends Model
+class Main extends AbstractPage
 {
     /** @use HasFactory<\Database\Factories\Pages\MainFactory> */
     use HasFactory;
@@ -14,21 +13,11 @@ class Main extends Model
 
     public $timestamps = false;
 
-    protected $fillable = [
-        'title',
-        'text',
-    ];
-
-    protected $casts = [
-        'title' => 'string',
-        'text' => 'string',
-    ];
-
     public static function getTransaledField(): array
     {
         return [
             'title',
-            'text',
+            'description',
         ];
     }
 }

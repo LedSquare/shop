@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources\Blog\Category;
 
-use App\Models\Blog\Category\Article;
+use App\Models\Blog\Category\AbstractArticle;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Decorations\Block;
@@ -12,11 +12,11 @@ use MoonShine\Fields\Field;
 use MoonShine\Resources\ModelResource;
 
 /**
- * @extends ModelResource<Article>
+ * @extends ModelResource<AbstractArticle>
  */
 class ArticleResource extends ModelResource
 {
-    protected string $model = Article::class;
+    protected string $model = AbstractArticle::class;
 
     protected string $title = 'Статья';
 
@@ -34,7 +34,7 @@ class ArticleResource extends ModelResource
     }
 
     /**
-     * @param  Article  $item
+     * @param  AbstractArticle  $item
      * @return array<string, string[]|string>
      *
      * @see https://laravel.com/docs/validation#available-validation-rules

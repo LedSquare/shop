@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Factories\Menu;
+namespace Database\Factories\Blog\Category;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Menu\Menu>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Blog\Category\Intersting>
  */
-class MenuFactory extends Factory
+class InterstingFactory extends Factory
 {
     /**
      * Define the model's default state.
